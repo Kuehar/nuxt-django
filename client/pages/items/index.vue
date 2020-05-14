@@ -1,6 +1,7 @@
 <template>
-  <main class="container mt-5">
-    <div class="row">
+  <v-layout>
+    <v-flex class="text-center">
+        <div class="row">
         <div class="col-12 text-right mb-4">
         <div class="d-flex justify-content-between">
           <h3>商品一覧</h3>
@@ -11,11 +12,14 @@
       </div>
       <template v-for="item in items">
         <div :key="item.id" class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <!--<item-card :on-delete="deleteitem" :item="item" />-->
+          <item-card :on-delete="deleteitem" :item="item" />
         </div>
       </template>
     </div>
-    </main>
+        </footer>
+      </blockquote>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
