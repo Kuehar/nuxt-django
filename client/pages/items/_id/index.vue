@@ -22,6 +22,10 @@
           <p>{{ item.price }}</p>
           <h4>説明</h4>
           <p>{{ item.description }}</p>
+          <h3>編集</h3>
+          <nuxt-link :to="`/items/${item.id}/edit`" class="btn btn-info">
+            商品を編集する
+            </nuxt-link>
         </div>
       </div>
     </div>
