@@ -37,14 +37,32 @@ module.exports = {
   buildModules: [
     '@nuxtjs/vuetify',
   ],
+  toast: {
+    position: 'center',
+    theme: 'bubble'
+  },
   /*
   ** Nuxt.js modules
   */
   modules: [
     '@nuxtjs/axios', //追加
+    '@nuxtjs/auth' 
   ],
   axios: {
     baseURL: 'http://localhost:8000/api/',
+  },
+   //Auth周りの設定
+   auth: {
+    fetchUserOnLogin: true,
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'auth/jwt/create/', method: 'post', propertyName: 'access', tokenType: 'JWT', },
+          logout: false,
+          user: { url: 'auth/users/me/', method:'get',propertyName: false },
+        },
+      }
+    }, 
   },
   /*
   ** vuetify module configuration

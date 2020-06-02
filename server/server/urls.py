@@ -22,6 +22,10 @@ from django.conf import settings # 追加
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('practice.urls')), # 追加
+
+    # djoser
+    path('api/auth/',include('djoser.urls')), #add
+    path('api/auth/',include('djoser.urls.jwt')), #add
 ]
 
 # 追加

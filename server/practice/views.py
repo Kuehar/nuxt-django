@@ -20,6 +20,7 @@ class ItemCreateView(generics.CreateAPIView):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
 
+# 商品を編集・削除するためのview
 class ItemEditView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
