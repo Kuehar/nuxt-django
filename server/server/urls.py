@@ -25,7 +25,7 @@ urlpatterns = [
 
     # djoser
     path('api/auth/',include('djoser.urls')), #add
-    path('api/auth/',include('djoser.urls.jwt')), #add
+    path('api/auth/',include('djoser.urls.authtoken')), #add
 ]
 
 # 追加

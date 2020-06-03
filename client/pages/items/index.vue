@@ -1,15 +1,14 @@
 <template>
   <main class="container mt-5">
-  <v-layout>
     <v-flex class="text-center">
         <div class="row">
-        <div class="col-12 text-right mb-4">
-        <div class="d-flex justify-content-between">
-          <h3>商品一覧</h3>
-          <nuxt-link to="/addItem" class="btn btn-info">
-            商品を追加する
-          </nuxt-link>
-        </div>
+          <div class="col-12 text-right mb-4">
+            <div class="d-flex justify-content-between">
+            <h3>商品一覧</h3>
+            <nuxt-link to="/addItem" class="btn btn-info">
+              商品を追加する
+            </nuxt-link>
+            </div>
       </div>
       <template v-for="item in items">
         <div :key="item.id" class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -20,7 +19,6 @@
         </footer>
       </blockquote>
     </v-flex>
-  </v-layout>
   </main>
 </template>
 

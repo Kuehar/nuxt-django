@@ -30,6 +30,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/axios'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -46,23 +47,29 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios', //追加
-    '@nuxtjs/auth' 
+    '@nuxtjs/auth' //追加
   ],
   axios: {
     baseURL: 'http://localhost:8000/api/',
   },
    //Auth周りの設定
    auth: {
-    fetchUserOnLogin: true,
+    redirect: {
+      login: '/login', 
+      logout: '/login',
+      callback: false,
+      home: '/'
+    },
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'auth/jwt/create/', method: 'post', propertyName: 'access', tokenType: 'JWT', },
-          logout: false,
-          user: { url: 'auth/users/me/', method:'get',propertyName: false },
+          login: { url: '/auth/token/login/', method: 'post', propertyName: 'token' },
+          user: { url:'/auth/users/me/', method:'get', propertyName: '' },
+          logout: { url: '/auth/logout', method: 'post' },
         },
+        
       }
-    }, 
+    }  
   },
   /*
   ** vuetify module configuration
@@ -84,6 +91,9 @@ module.exports = {
         }
       }
     }
+  },
+  router: {
+    middleware: ['auth']
   },
   /*
   ** Build configuration

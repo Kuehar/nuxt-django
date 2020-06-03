@@ -1,61 +1,70 @@
 <template>
-  <v-flex xs12 sm8 md4>
-    <v-card class="elevation-12">
-      <v-toolbar dark color="primary">
-        <v-toolbar-title>Login</v-toolbar-title>
-      </v-toolbar>
-      <v-form novalidate @submit="login">
-        <v-card-text>
-          <p v-if="error" class="error">
-            {{ error }}
-          </p>
-          <v-text-field v-model="form.email" prepend-icon="person" name="login" label="email" type="text" required />
-          <v-text-field
-            id="password"
-            v-model="form.password"
-            prepend-icon="lock"
-            name="password"
-            label="Password"
-            type="password"
-            required
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn type="submit" color="primary">
-            Login
-          </v-btn>
-        </v-card-actions>
+  <div class="mt-3">
+    <v-card class="mt-5 mx-auto" max-width="600">
+      <v-form ref="form" lazy-validation>
+        <v-container>
+          <v-row justify="center">
+            <p cols="12" class="mt-3 display-1 grey--text">
+              ログイン
+            </p>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-text-field
+                v-model="email"
+                label="Eメールアドレス"
+              />
+              <p class="caption mb-0" />
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-text-field
+                v-model="password"
+                type="password"
+                label="パスワード"
+              />
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-btn
+                block
+                class="mr-4 blue white--text"
+                @click="loginWithAuthModule"
+              >
+                ログイン
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card>
-  </v-flex>
+  </div>
 </template>
 
 <script>
 export default {
-  middleware: 'auth',
-  data: () => ({
-    error: null,
-    form: {
-      email: '',
-      password: ''
+  data () {
+    return {
+      password: '',
+      email: ''
     }
-  }),
+  },
   methods: {
-    async login () {
-      try {
-        const config = {
-        headers: { 'content-type': 'application/json' }
+    async loginWithAuthModule () {
+      await this.$auth.loginWith('local', {
+        data: {
+          email: this.email,
+          password: this.password
         }
-        await this.$auth.login('local',{ data: this.form,config })
-        if (this.$auth.hasScope('items')) {
-          this.$nuxt.$router.push('/items')
-        } else if (this.$auth.hasScope('inspire')) {
-          this.$nuxt.$router.push('/inspire')
-        }
-      } catch (e) {
-        this.error = 'Login failed.'
-      }
+      })
+        .then((response) => {
+          return response
+        },
+        (error) => {
+          return error
+        })
     }
   }
 }

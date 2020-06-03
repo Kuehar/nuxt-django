@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders', # 追加
     'practice', # 追加
     'djoser', # 追加
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -57,15 +58,18 @@ MIDDLEWARE = [
 ]
 
 
-SIMPLE_JWT = {
-    #トークンをJWTに設定
-    'AUTH_HEADER_TYPES':('JWT'),
-}
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+JWT_AUTH = {
+    # Authorization:Token xxx
+    'JWT_AUTH_HEADER_PREFIX': 'Token',
 }
 
 ROOT_URLCONF = 'server.urls'

@@ -29,6 +29,8 @@
       fixed
       app
     >
+
+
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
@@ -49,6 +51,11 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
+        <!-- <v-text-field
+              label="検索"
+              single-line
+              outlined
+            ></v-text-field> -->
       <v-spacer />
       <v-btn
         icon
@@ -105,13 +112,35 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
-        }
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Items',
+          to: '/items'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Login',
+          to: '/login'
+        },
+        {
+          icon: 'mdi-apps',
+          title: 'Signup',
+          to: '/signup'
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Nuxt&Django'
     }
   }
 }
 </script>
+
+<style>
+.v-input.theme--light.v-text-field.v-text-field--single-line.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined {
+    margin: auto;
+    margin-left: 10%;
+    }
+</style>
