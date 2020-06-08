@@ -108,9 +108,9 @@
       </v-container>
     </v-form>
     <v-form @submit.prevent="deleteItem">
-    <button class="btn btn-sm btn-danger">
+    <v-btn color="error">
           削除
-    </button>
+    </v-btn>
     </v-form>
   </v-app>
 </div>

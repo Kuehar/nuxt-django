@@ -4,10 +4,17 @@
         <div class="row">
           <div class="col-12 text-right mb-4">
             <div class="d-flex justify-content-between">
-            <h3>商品一覧</h3>
-            <nuxt-link to="/addItem" class="btn btn-info">
+            <v-btn class="d-flex ma-2" to="/addItem" nuxt>
               商品を追加する
-            </nuxt-link>
+            </v-btn>
+          <v-col class="d-flex ma-2" cols="12" sm="3">
+          <v-select
+            :category="category"
+            label="カテゴリー"
+            dense
+            solo
+          ></v-select>
+          </v-col>
             </div>
       </div>
       <template v-for="item in items">
@@ -15,6 +22,13 @@
           <item-card :on-delete="deleteitem" :item="item" />
         </div>
       </template>
+    </div>
+    <div class="text-center">
+      <v-pagination
+        :length="4"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+      ></v-pagination>
     </div>
         </footer>
       </blockquote>
@@ -55,8 +69,13 @@ export default {
   },
   head () {
     return {
-      title: '商品一覧'
+      title: '商品一覧',
+      }
+  },
+      data() {
+        return {
+          category:['飲料','お花','本']
     }
-  }
+    }
 }
 </script>

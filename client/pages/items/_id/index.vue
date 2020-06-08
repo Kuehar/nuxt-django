@@ -18,14 +18,16 @@
         <div class="item-details">
           <h4>カテゴリー</h4>
           <p>{{ item.category }}</p>
+          <hr>
           <h4>値段</h4>
           <p>{{ item.price }}</p>
+          <hr>
           <h4>説明</h4>
           <p>{{ item.description }}</p>
-          <h3>編集</h3>
-          <nuxt-link :to="`/items/${item.id}/edit`" class="btn btn-info">
+          <hr>
+          <v-btn :to="`/items/${item.id}/edit`" class="btn primary" nuxt>
             商品を編集する
-            </nuxt-link>
+            </v-btn>
         </div>
       </div>
     </div>
@@ -51,6 +53,9 @@ export default {
       price:'',
       description:'',
       }
+      /*icons:{
+        category:
+      },*/
     }
   },
   head () {

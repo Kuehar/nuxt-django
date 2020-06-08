@@ -30,7 +30,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/axios'
+    /*'~/plugins/axios'*/
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,7 +39,7 @@ module.exports = {
     '@nuxtjs/vuetify',
   ],
   toast: {
-    position: 'center',
+    position: 'top-center',
     theme: 'bubble'
   },
   /*
@@ -47,7 +47,9 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios', //追加
-    '@nuxtjs/auth' //追加
+    '@nuxtjs/auth', //追加
+    'nuxt-clipboard2',//追加
+    '@nuxtjs/toast'
   ],
   axios: {
     baseURL: 'http://localhost:8000/api/',
@@ -92,9 +94,9 @@ module.exports = {
       }
     }
   },
-  router: {
+  /*router: {
     middleware: ['auth']
-  },
+  },*/
   /*
   ** Build configuration
   */

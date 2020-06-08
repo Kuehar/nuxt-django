@@ -1,46 +1,79 @@
 <template>
-  <v-flex xs12 sm8 md4>
-    <v-card class="elevation-12">
-      <v-toolbar dark color="primary">
-        <v-toolbar-title>登録</v-toolbar-title>
-      </v-toolbar>
-      <v-form>
-        <v-card-text>
-          <p v-if="error" class="error">
-            {{ error }}
-          </p>
-          <v-text-field class="email-field" v-model="form.email"  name="login" label="メールアドレス" type="email" required />
-          <v-text-field class="email-field" v-model="form.username"  name="username" label="ユーザーネーム" type="email" required />
-          <v-text-field class="password" v-model="form.password" name="password" label="パスワード" type="password" required/>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn @click='login' type="submit" color="primary">
-            登録
-          </v-btn>
-        </v-card-actions>
+  <div class="mt-3">
+    <v-card class="mt-5 mx-auto" max-width="600">
+      <v-form ref="form" lazy-validation>
+        <v-container>
+          <v-row justify="center">
+            <p cols="12" class="mt-3 display-1 grey--text">
+              会員登録
+            </p>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-text-field
+                v-model="email"
+                label="Eメールアドレス"
+              />
+              <p class="caption mb-0" />
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-text-field
+                v-model="password"
+                type="password"
+                label="パスワード"
+              />
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-text-field
+                v-model="password"
+                type="password"
+                label="パスワード（再入力）"
+              />
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="12" md="10" sm="10">
+              <v-btn
+                block
+                class="mr-4 blue white--text"
+                @click="loginWithAuthModule"
+              >
+                登録
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
     </v-card>
-  </v-flex>
+  </div>
 </template>
 
 <script>
 export default {
-  auth: false,
-  data: () => ({
-    form: {
-      email: '',
-      password: ''
+  data () {
+    return {
+      password: '',
+      email: ''
     }
-  }),
+  },
   methods: {
-    async login () {
-      try {
-        await this.$auth.loginWith('local',{data:this.data})
-        .then(() => this.$toast.success('ログインしました'))
-      } catch (e) {
-        this.error = 'Login failed.'
-      }
+    async loginWithAuthModule () {
+      await this.$auth.loginWith('local', {
+        data: {
+          email: this.email,
+          password: this.password
+        }
+      })
+        .then((response) => {
+          return response
+        },
+        (error) => {
+          return error
+        })
     }
   }
 }
