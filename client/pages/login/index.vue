@@ -8,7 +8,7 @@
               ログイン
             </p>
           </v-row>
-          <v-row justify="center">
+          <!--<v-row justify="center">
             <v-col cols="12" md="10" sm="10">
               <v-text-field
                 v-model="email"
@@ -25,13 +25,13 @@
                 label="パスワード"
               />
             </v-col>
-          </v-row>
+          </v-row>-->
           <v-row justify="center">
             <v-col cols="12" md="10" sm="10">
               <v-btn
                 block
                 class="mr-4 blue white--text"
-                @click="loginWithAuthModule"
+                @click="login"
               >
                 ログイン
               </v-btn>
@@ -44,15 +44,20 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase'
 export default {
-  data () {
+  /*data () {
     return {
       password: '',
       email: ''
     }
-  },
+  },*/
   methods: {
-    async loginWithAuthModule () {
+    login() {
+      console.log('login')
+      this.$store.dispatch('login')
+    }
+    /*async loginWithAuthModule () {
       await this.$auth.loginWith('local', {
         data: {
           email: this.email,
@@ -65,7 +70,7 @@ export default {
         (error) => {
           return error
         })
-    }
+    }*/
   }
 }
 </script>
