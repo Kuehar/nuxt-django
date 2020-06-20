@@ -136,17 +136,22 @@ export default {
           to: '/inspire'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-store',
           title: 'Items',
           to: '/items'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-cart',
+          title: 'Cart',
+          to: '/items'
+        },
+        {
+          icon: 'mdi-login',
           title: 'Login',
           to: '/login'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-account-plus',
           title: 'Signup',
           to: '/signup'
         },

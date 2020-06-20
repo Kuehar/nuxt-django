@@ -86,6 +86,7 @@
            label="商品画像"
            filled
            prepend-icon="mdi-camera"
+           required
            ></v-file-input>
           </v-col>
           <v-card-actions>
