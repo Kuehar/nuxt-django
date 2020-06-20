@@ -40,7 +40,8 @@ module.exports = {
   ],
   toast: {
     position: 'top-center',
-    theme: 'bubble'
+    theme: 'bubble',
+    duration: 2000
   },
   /*
   ** Nuxt.js modules

@@ -15,7 +15,21 @@
             solo
           ></v-select>
           </v-col>
-            </div>
+          <v-col cols="12" sm="6" md="4">
+          <v-text-field
+            append-icon="mdi-magnify"
+            placeholder="検索"
+            filled
+            rounded
+            dense
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="2" md="1">
+        <v-btn class="search-btn">
+          検索
+        </v-btn>
+        </v-col>
+          </div>
       </div>
       <template v-for="item in items">
         <div :key="item.id" class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -53,7 +67,8 @@ export default {
   },
   data () {
     return {
-      items: []
+      items: [],
+      category: ['飲料','お花','本']
     }
   },
   methods: {
@@ -71,11 +86,6 @@ export default {
     return {
       title: '商品一覧',
       }
-  },
-      data() {
-        return {
-          category:['飲料','お花','本']
-    }
-    }
+  }
 }
 </script>
